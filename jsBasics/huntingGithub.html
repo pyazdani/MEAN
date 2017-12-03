@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+
+    <script>
+        
+        function request(){
+            let name = new Promise(askGitHub);
+            name.then((name) => { $('h1').text(name); });
+            name.catch(() => { $('h1').text('None found!'); });
+        }
+        function askGitHub(resolve, reject){
+            $.get("https://api.github.com/users/pyazdani", (data) => {
+                if(!data.name){ reject("- none found"); }
+                else { resolve(data.name); }
+            })
+        }
+        $('document').ready(() => { $('button').click(request); });
+    </script>
+
+    <body style="text-align: center; margin: 20% 20%">
+        <button>Display Name</button>
+        <h1></h1>
+    </body>
+</html>

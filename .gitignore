@@ -1,0 +1,7 @@
+/.metadata
+/.recommenders
+*.class
+/RemoteSystemsTempFiles/
+*.zip
+.DS_Store
+node_modules
