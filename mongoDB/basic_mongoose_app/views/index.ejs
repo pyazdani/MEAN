@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Users Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h2>Users Page</h2>
+    <p>Here are the users</p>
+</header>
+
+<new-row>
+
+
+<!-- form to add users -->
+<col-4>
+    <form action=/users method=post>
+        <div><input type=text name=name placeholder=Name></div>
+        <div><input type=text name=age placeholder=Age></div>
+        <input type=hidden name=note value=none>
+        <input type=submit value='Add User'>
+    </form>
+    <% users.forEach(function (user) { %>
+        <h2><%= user.name %>, <%= user.age %></h2><hr>
+    <% }) %>
+</body>
+</html>
