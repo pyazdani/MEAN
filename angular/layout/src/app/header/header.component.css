@@ -1,0 +1,10 @@
+* {
+    /*border: 1px dashed green;*/
+}
+
+.header {
+    border: 3px solid black;
+    width: 900px;
+    padding-left: 30px;
+    margin-bottom: 10px;
+}

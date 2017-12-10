@@ -1,0 +1,101 @@
+<h1>Registration</h1>
+<div *ngIf="on" style="color:green">
+  <p>Thank you for registering with us {{users[users.length-1].firstname}}. We just sent you a confirmation email at {{users[users.length-1].email}}, and we will send all mail to {{users[users.length-1].address}}, {{users[users.length-1].city}} {{users[users.length-1].state}}</p>
+  <br>
+  <p>Have a wonderful day!</p>
+</div>
+<br>
+<br>
+<div class="account-info">
+  <h2>Account Information:</h2>
+  <form #userForm="ngForm" (submit)="onSubmit(userForm)" novalidate>
+    <label for="firstname">*First Name:</label>
+    <input type="text" name="firstname" [(ngModel)]='user.firstname' required minlength="2" maxlength="24" #firstname="ngModel" placeholder="First Name">
+    <span *ngIf="firstname.errors && ( firstname.dirty || firstname.touched )">
+      <span style="color:red" [hidden]="!firstname.errors.required">First name is required!</span>
+      <span style="color:red" [hidden]="!firstname.errors.minlength">First name must be at least 2 characters!</span>
+      <span style="color:red" [hidden]="!firstname.errors.maxlength">First name must be no more than 24 characters!</span>
+    </span>
+      <span style="color:green" [hidden]="!firstname.valid">Great!</span>
+    <br>
+    <br>
+    <label for="llastname">*Last Name:</label>
+    <input type="text" name="lastname" [(ngModel)]='user.lastname' required minlength="2" maxlength="24" #lastname="ngModel" placeholder="Last Name">
+    <span *ngIf="lastname.errors && ( lastname.dirty || lastname.touched )">
+      <span style="color:red" [hidden]="!lastname.errors.required">Last name is required!</span>
+      <span style="color:red" [hidden]="!lastname.errors.minlength">Last name must be at least 2 characters!</span>
+      <span style="color:red" [hidden]="!lastname.errors.maxlength">Last name must be no more than 24 characters!</span>
+    </span>
+      <span style="color:green" [hidden]="!lastname.valid">Great!</span>
+    <br>
+    <br>
+    <label for="email">*Email:</label>
+    <input type="email" name="email" [(ngModel)]='user.email' required maxlength="40" #email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Email">
+    <span *ngIf="email.errors && ( email.dirty || email.touched )">
+      <span style="color:red" [hidden]="!email.errors.required">Email is required!</span>
+      <span style="color:red" [hidden]="!email.errors.maxlength">Email must be no more than 40 characters!</span>
+      <span style="color:red" [hidden]="!email.errors.pattern">Please enter a valid email address!</span>
+    </span>
+      <span style="color:green" [hidden]="!email.valid">Great!</span>
+      <br>
+      <br>
+    <label for="password">*Password:</label>
+    <input type="text" name="password" [(ngModel)]='user.password' required minlength="8" maxlength="20" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" #password="ngModel" placeholder="Password">
+    <span *ngIf="password.errors && ( password.dirty || password.touched )">
+      <span style="color:red" [hidden]="!password.errors.required">Password is required!</span>
+      <span style="color:red" [hidden]="!password.errors.maxlength">Password must be no more than 20 characters!</span>
+      <span style="color:red" [hidden]="!password.errors.pattern">Password must contain at least one uppercase letter, one lowercase letter and one number!</span>
+    </span>
+      <span style="color:green" [hidden]="!password.valid">Great!</span>
+      <br>
+      <br>
+    <label for="confirmpassword">*Confirm Password:</label>
+    <input type="text" name="confirmpassword" [(ngModel)]='user.confirmpassword' #confirmpassword="ngModel" required placeholder="Confirm Password">
+    <span *ngIf="confirmpassword.dirty || confirmpassword.touched ">
+      <span style="color:red" *ngIf="confirmpassword.value != password.value">Passwords do not match!</span>
+      <span style="color:green" *ngIf="confirmpassword.value === password.value">Great!</span>
+    </span>
+      <br>
+      <br>
+    <label for="address">*Street Address:</label>
+    <input type="text" name="address" [(ngModel)]='user.address' required maxlength="50" #address="ngModel" placeholder="Street Address">
+    <span *ngIf="address.errors && ( address.dirty || address.touched )">
+      <span style="color:red" [hidden]="!address.errors.required">Street address is required!</span>
+      <span style="color:red" [hidden]="!address.errors.maxlength">Street address must be no more than 50 characters!</span>
+    </span>
+      <span style="color:green" [hidden]="!address.valid">Great!</span>
+      <br>
+      <br>
+      <label for="unit">Unit/Apt #</label>
+    <input type="text" name="unit" [(ngModel)]='user.unit' #unit="ngModel" placeholder="optional">
+      <br>
+      <br>
+    <label for="city">*City:</label>
+    <input type="text" name="city" [(ngModel)]='user.city' required  #city="ngModel" placeholder="City">
+    <span *ngIf="city.errors && ( city.dirty || city.touched )">
+      <span style="color:red" [hidden]="!city.errors.required">City is required!</span>
+    </span>
+      <span style="color:green" [hidden]="!city.valid">Great!</span>
+      <br>
+      <br>
+    <label for="state">*State:</label>
+    <input type="text" name="state" [(ngModel)]='user.state' required minlength="2" maxlength="2" #state="ngModel" placeholder="State Abbrev.">
+    <span *ngIf="state.errors && ( state.dirty || state.touched )">
+      <span style="color:red" [hidden]="!state.errors.required">State is required!</span>
+      <span style="color:red" [hidden]="!state.errors.minlength">State must be 2 characters!</span>
+      <span style="color:red" [hidden]="!state.errors.maxlength">State must be 2 characters!</span>
+    </span>
+      <span style="color:green" [hidden]="!state.valid">Great!</span>
+      <br>
+      <br>
+      Feeling Lucky??
+    <input type="radio" name="lucky" [(ngModel)]="user.lucky" value="yes" required #lucky="ngModel">Yes
+    <input type="radio" name="lucky" [(ngModel)]="user.lucky" value="no" required #lucky="ngModel">No
+    <span *ngIf="lucky.errors && ( lucky.dirty || lucky.touched )">
+      <span style="color:red" [hidden]="!lucky.errors.required">Please Select One!</span>
+    </span>
+    <br>
+    <br>
+    <input type="submit" [disabled]="!userForm.form.valid">
+  </form>
+</div>
