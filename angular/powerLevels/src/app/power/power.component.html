@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="row">
+    <div class="col-md-12">
+      <form #powerForm="ngForm" class="form-inline" (submit)="onSubmit(powerForm)">
+        <div class="form-group">
+          <h4>Initial Power Level:
+            <select name="power" id="power" class="form-control" [(ngModel)]="power.num" required>
+              <option *ngFor="let x of counter" value="{{x}}">{{x}}</option>
+            </select>
+          <button type="submit" class="btn btn-default" [disabled]="!powerForm.form.valid">Calculate Powers</button>
+          <span class="pull-right">
+            <img src="assets/img/goten.png" alt="DBZ Goten" class="img-responsive" id="goten">
+          </span></h4>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row main">
+    <div class="col-md-12 box">Human<app-power-levels [Power]="human"></app-power-levels></div>
+    <div class="col-md-12 box">Saiyan<app-power-levels [Power]="saiyan"></app-power-levels></div>
+    <div class="col-md-12 box">SuperSaiyan<app-power-levels [Power]="supersaiyan"></app-power-levels></div>
+    <div class="col-md-12 box">SuperSaiyan2<app-power-levels [Power]="supersaiyan2"></app-power-levels></div>
+    <div class="col-md-12 box">SuperSaiyan3<app-power-levels [Power]="supersaiyan3"></app-power-levels></div>
+    <div class="col-md-12 box">SuperSaiyan4<app-power-levels [Power]="supersaiyan4"></app-power-levels></div>
+  </div>
+</div>

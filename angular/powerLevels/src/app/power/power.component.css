@@ -1,0 +1,23 @@
+.wrapper{
+  border: 1px solid black;
+  height: 1150px;
+  padding: 30px;
+}
+.main{
+  margin-top: 50px;
+}
+#power{
+  width: 70px;
+}
+#trunks{
+  height: 200px;
+}
+#goten{
+  margin-left: 200px;
+  height: 200px;
+}
+.box{
+  border: 1px solid black;
+  height: 130px;
+  margin-top: 10px;
+}
